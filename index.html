@@ -6,41 +6,41 @@
   <title>Grace Lyell</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f7f4ef;
-      --text: #1c1b1a;
-      --muted: #9a9590;
-      --gap: 10px;
+      --bg: #ffffff;
+      --text: #0a0a0a;
+      --muted: #aaa;
+      --gap: 6px;
+      --img-h: 260px;
     }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Ubuntu', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       min-height: 100vh;
     }
 
     /* ── Header ── */
     header {
-      padding: 22px 48px;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 20px;
-      border-bottom: 1px solid rgba(28,27,26,0.15);
+      gap: 16px;
+      border-bottom: 1px solid #e8e8e8;
     }
 
     .site-name {
-      font-family: 'Avenir', 'Jost', sans-serif;
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       text-decoration: none;
       color: var(--text);
@@ -50,71 +50,67 @@
 
     nav {
       display: flex;
-      gap: 28px;
+      gap: 24px;
       flex-wrap: wrap;
-      align-items: baseline;
+      align-items: center;
     }
 
     nav button {
       background: none;
       border: none;
-      border-bottom: 1px solid transparent;
       cursor: pointer;
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 11px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
       font-weight: 300;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
-      padding: 2px 0 3px;
-      transition: color 0.2s, border-color 0.2s;
+      padding: 0;
+      transition: color 0.2s;
     }
 
     nav button.active,
-    nav button:hover {
-      color: var(--text);
-      border-bottom-color: var(--text);
-    }
+    nav button:hover { color: var(--text); }
 
-    /* ── Gallery ── */
+    /* ── Gallery strip ── */
     #gallery {
-      padding: 28px 48px 80px;
-      columns: 3 260px;
-      column-gap: var(--gap);
+      padding: 28px 40px 80px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gap);
+      align-content: flex-start;
     }
 
     .gallery-item {
-      break-inside: avoid;
-      margin-bottom: var(--gap);
-      cursor: pointer;
+      flex: 0 0 auto;
       overflow: hidden;
+      cursor: pointer;
       position: relative;
-      background: #ede9e3;
+      line-height: 0;
     }
 
     .gallery-item img {
-      width: 100%;
-      height: auto;
+      height: var(--img-h);
+      width: auto;
       display: block;
-      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 0.3s;
     }
 
-    .gallery-item:hover img { transform: scale(1.035); }
+    .gallery-item:hover img { opacity: 0.82; }
 
-    /* Video cards in gallery */
+    /* Video cards */
     .gallery-item.video-card {
-      aspect-ratio: 16/9;
+      height: var(--img-h);
     }
 
     .gallery-item.video-card video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: var(--img-h);
+      width: auto;
       display: block;
-      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 0.3s;
     }
 
-    .gallery-item.video-card:hover video { transform: scale(1.035); }
+    .gallery-item.video-card:hover video { opacity: 0.82; }
 
     .play-icon {
       position: absolute;
@@ -124,49 +120,53 @@
       justify-content: center;
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.25s;
     }
 
     .play-icon::after {
       content: '';
-      width: 42px;
-      height: 42px;
-      border: 1.5px solid rgba(255,255,255,0.7);
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255,255,255,0.8);
       border-radius: 50%;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,0.85)'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/20px no-repeat;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,0.9)'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/18px no-repeat;
     }
 
     .gallery-item.video-card:hover .play-icon { opacity: 1; }
 
+    /* Caption on hover */
     .item-caption {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 28px 14px 13px;
-      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.52));
+      padding: 24px 10px 9px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.45));
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.25s;
     }
 
     .gallery-item:hover .item-caption { opacity: 1; }
 
     .item-title {
-      color: rgba(255,255,255,0.88);
-      font-size: 11px;
+      color: rgba(255,255,255,0.9);
+      font-size: 10px;
       font-weight: 300;
       letter-spacing: 0.06em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .gallery-item.hidden { display: none; }
 
-    /* ── Director section ── */
+    /* ── Text sections (Director / Choreography / About) ── */
     #director-section,
     #choreography-section,
     #about {
       display: none;
-      padding: 64px 48px 100px;
-      max-width: 640px;
+      padding: 60px 40px 100px;
+      max-width: 600px;
     }
 
     #director-section.visible,
@@ -174,105 +174,80 @@
     #about.visible { display: block; }
 
     .section-label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
+      font-size: 9px;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     .project-list {
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
     }
 
     .project-list li {
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(28,27,26,0.08);
+      padding: 16px 0;
+      border-bottom: 1px solid #ebebeb;
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       gap: 20px;
     }
 
-    .project-list li:first-child { border-top: 1px solid rgba(28,27,26,0.08); }
+    .project-list li:first-child { border-top: 1px solid #ebebeb; }
 
     .project-name {
       font-size: 13px;
       font-weight: 300;
-      letter-spacing: 0.04em;
-      color: var(--text);
+      letter-spacing: 0.02em;
     }
 
     .project-link {
-      font-size: 10px;
-      letter-spacing: 0.12em;
+      font-size: 9px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
       white-space: nowrap;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
+      transition: color 0.2s;
     }
 
-    .project-link:hover {
-      color: var(--text);
-      border-bottom-color: var(--text);
-    }
+    .project-link:hover { color: var(--text); }
 
     .project-soon {
-      font-size: 10px;
-      letter-spacing: 0.12em;
+      font-size: 9px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: #ccc;
       white-space: nowrap;
     }
 
     /* Choreography videos */
     .choreo-videos {
-      margin-top: 40px;
+      margin-top: 44px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     .choreo-video {
       width: 100%;
       aspect-ratio: 16/9;
-      background: #1c1b1a;
+      background: #111;
       display: block;
     }
 
-    .choreo-label {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    /* ── About ── */
-    #about p {
-      font-size: 14px;
-      line-height: 1.95;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-
+    /* About contact */
     .contact-block {
-      margin-top: 40px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .contact-block a,
     .contact-block span {
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
@@ -280,23 +255,19 @@
 
     .contact-block a {
       color: var(--text);
-      border-bottom: 1px solid var(--text);
-      padding-bottom: 1px;
-      width: fit-content;
-      transition: color 0.2s, border-color 0.2s;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
     }
 
-    .contact-block a:hover {
-      color: var(--muted);
-      border-bottom-color: var(--muted);
-    }
+    .contact-block a:hover { color: var(--muted); }
 
     /* ── Lightbox ── */
     #lightbox {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(13,12,11,0.95);
+      background: rgba(255,255,255,0.97);
       z-index: 200;
       align-items: center;
       justify-content: center;
@@ -305,8 +276,8 @@
     #lightbox.open { display: flex; }
 
     #lb-img {
-      max-width: min(88vw, 1300px);
-      max-height: 84vh;
+      max-width: min(90vw, 1400px);
+      max-height: 88vh;
       object-fit: contain;
       display: block;
       user-select: none;
@@ -314,55 +285,56 @@
 
     #lb-video {
       display: none;
-      max-width: min(88vw, 1300px);
-      max-height: 84vh;
+      max-width: min(90vw, 1400px);
+      max-height: 88vh;
     }
 
     #lb-video.active { display: block; }
 
     .lb-close {
       position: fixed;
-      top: 26px;
-      right: 34px;
+      top: 22px;
+      right: 30px;
       background: none;
       border: none;
-      color: rgba(255,255,255,0.5);
-      font-size: 34px;
+      color: #bbb;
+      font-size: 28px;
       line-height: 1;
       cursor: pointer;
       transition: color 0.2s;
       z-index: 201;
+      font-weight: 200;
     }
 
-    .lb-close:hover { color: white; }
+    .lb-close:hover { color: var(--text); }
 
-    .lb-prev,
-    .lb-next {
+    .lb-prev, .lb-next {
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
-      color: rgba(255,255,255,0.35);
-      font-size: 48px;
+      color: #ccc;
+      font-size: 40px;
+      font-weight: 200;
       line-height: 1;
       cursor: pointer;
-      padding: 0 28px;
+      padding: 0 24px;
       transition: color 0.2s;
       z-index: 201;
     }
 
     .lb-prev { left: 0; }
     .lb-next { right: 0; }
-    .lb-prev:hover, .lb-next:hover { color: rgba(255,255,255,0.85); }
+    .lb-prev:hover, .lb-next:hover { color: var(--text); }
 
     #lb-caption {
       position: fixed;
-      bottom: 26px;
+      bottom: 22px;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255,255,255,0.38);
-      font-size: 11px;
+      color: #bbb;
+      font-size: 10px;
       letter-spacing: 0.1em;
       text-align: center;
       white-space: nowrap;
@@ -371,16 +343,16 @@
 
     /* ── Footer ── */
     footer {
-      padding: 24px 48px;
-      border-top: 1px solid rgba(28,27,26,0.1);
+      padding: 20px 40px;
+      border-top: 1px solid #e8e8e8;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     footer span, footer a {
-      font-size: 11px;
-      letter-spacing: 0.08em;
+      font-size: 10px;
+      letter-spacing: 0.14em;
       color: var(--muted);
       text-decoration: none;
       text-transform: uppercase;
@@ -390,26 +362,27 @@
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
+      :root { --img-h: 120px; }
+
       header {
-        padding: 16px 24px;
-        flex-direction: column;
-        gap: 16px;
+        padding: 14px 20px;
+        gap: 12px;
       }
+
       #gallery {
-        padding: 20px 24px 60px;
-        columns: 2 140px;
+        padding: 16px 20px 60px;
+        gap: 4px;
       }
+
       #director-section, #choreography-section, #about {
-        padding: 44px 24px 60px;
+        padding: 40px 20px 60px;
       }
-      footer {
-        padding: 20px 24px;
-        flex-direction: column;
-        gap: 8px;
-      }
+
+      footer { padding: 16px 20px; }
+
       .lb-prev, .lb-next {
-        font-size: 36px;
-        padding: 0 16px;
+        font-size: 30px;
+        padding: 0 12px;
       }
     }
   </style>
@@ -419,12 +392,12 @@
 <header>
   <h1><a class="site-name" href="#" id="home-link">Grace Lyell</a></h1>
   <nav>
-    <button class="filter-btn active" data-filter="all">all</button>
-    <button class="filter-btn" data-filter="photography">photography</button>
-    <button class="filter-btn" data-filter="movement">movement direction</button>
-    <button id="director-btn">director</button>
-    <button id="choreography-btn">choreography</button>
-    <button id="about-btn">about</button>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="photography">Photography</button>
+    <button class="filter-btn" data-filter="movement">Movement Direction</button>
+    <button id="director-btn">Director</button>
+    <button id="choreography-btn">Choreography</button>
+    <button id="about-btn">About</button>
   </nav>
 </header>
 
@@ -442,59 +415,59 @@
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/DSC04947.jpg" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/DSC04970.JPG" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/DSC05142.jpg" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/DSC05191.jpg" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/DSC05381.JPG" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/DSC05660.JPG" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/DSC05679.jpg" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/SAM_4355.JPG" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/SAM_4379.JPG" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/SAM_4398.JPG" alt="OFTS Foundation Art Book" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
     </div>
 
     <!-- MOVEMENT DIRECTION -->
 
     <div class="gallery-item" data-category="movement" data-title="Amina Muaddi — shot by Paul Kooiker">
       <img src="assets/movement/amina-muaddi/CHARLOTTE AM W.jpg" alt="Amina Muaddi" loading="lazy">
-      <div class="item-caption"><span class="item-title">Amina Muaddi — shot by Paul Kooiker</span></div>
+      <div class="item-caption"><span class="item-title">Amina Muaddi — Paul Kooiker</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Celia Cotelle">
@@ -519,82 +492,82 @@
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-01.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-04.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-06.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-13.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-23.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-24.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-27.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-29.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-47.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Charlie Le Mindu Couture Show SS26">
       <img src="assets/movement/charlie-lemindu/CLM_STILLS_SALLY_MOORE-52.jpg" alt="Charlie Le Mindu SS26" loading="lazy">
-      <div class="item-caption"><span class="item-title">Charlie Le Mindu Couture Show SS26</span></div>
+      <div class="item-caption"><span class="item-title">Charlie Le Mindu SS26</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Coperni × Puma — photographed by Paul Kooiker">
       <img src="assets/movement/coperni-puma/IMG_1989.jpeg" alt="Coperni x Puma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Coperni × Puma — photographed by Paul Kooiker</span></div>
+      <div class="item-caption"><span class="item-title">Coperni × Puma — Paul Kooiker</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Coperni × Puma — photographed by Paul Kooiker">
       <img src="assets/movement/coperni-puma/IMG_1990.jpeg" alt="Coperni x Puma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Coperni × Puma — photographed by Paul Kooiker</span></div>
+      <div class="item-caption"><span class="item-title">Coperni × Puma — Paul Kooiker</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Coperni × Puma — photographed by Paul Kooiker">
       <img src="assets/movement/coperni-puma/IMG_1991.jpeg" alt="Coperni x Puma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Coperni × Puma — photographed by Paul Kooiker</span></div>
+      <div class="item-caption"><span class="item-title">Coperni × Puma — Paul Kooiker</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Coperni × Puma — photographed by Paul Kooiker">
       <img src="assets/movement/coperni-puma/IMG_1992.jpeg" alt="Coperni x Puma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Coperni × Puma — photographed by Paul Kooiker</span></div>
+      <div class="item-caption"><span class="item-title">Coperni × Puma — Paul Kooiker</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Coperni × Puma — photographed by Paul Kooiker">
       <img src="assets/movement/coperni-puma/IMG_1993.jpeg" alt="Coperni x Puma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Coperni × Puma — photographed by Paul Kooiker</span></div>
+      <div class="item-caption"><span class="item-title">Coperni × Puma — Paul Kooiker</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Coperni × Puma — photographed by Paul Kooiker">
       <img src="assets/movement/coperni-puma/IMG_1997.jpeg" alt="Coperni x Puma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Coperni × Puma — photographed by Paul Kooiker</span></div>
+      <div class="item-caption"><span class="item-title">Coperni × Puma — Paul Kooiker</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Diesel">
@@ -662,27 +635,27 @@
 
     <div class="gallery-item" data-category="movement" data-title="Max Mara — Photo &amp; Video Campaign">
       <img src="assets/movement/maxmara/01-03-2024-08-51-46.jpeg" alt="Max Mara Campaign" loading="lazy">
-      <div class="item-caption"><span class="item-title">Max Mara — Photo &amp; Video Campaign</span></div>
+      <div class="item-caption"><span class="item-title">Max Mara</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Max Mara — Photo &amp; Video Campaign">
       <img src="assets/movement/maxmara/13-03-2024-19-08-02.jpeg" alt="Max Mara Campaign" loading="lazy">
-      <div class="item-caption"><span class="item-title">Max Mara — Photo &amp; Video Campaign</span></div>
+      <div class="item-caption"><span class="item-title">Max Mara</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Max Mara — Photo &amp; Video Campaign">
       <img src="assets/movement/maxmara/39525BBC-D1DC-4DC4-8E00-817D193A58E2.jpg" alt="Max Mara Campaign" loading="lazy">
-      <div class="item-caption"><span class="item-title">Max Mara — Photo &amp; Video Campaign</span></div>
+      <div class="item-caption"><span class="item-title">Max Mara</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Max Mara — Photo &amp; Video Campaign">
       <img src="assets/movement/maxmara/IMG_3471.jpeg" alt="Max Mara Campaign" loading="lazy">
-      <div class="item-caption"><span class="item-title">Max Mara — Photo &amp; Video Campaign</span></div>
+      <div class="item-caption"><span class="item-title">Max Mara</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Max Mara — Photo &amp; Video Campaign">
       <img src="assets/movement/maxmara/Weekend-Max-Mara-Signature-Summer-2024-Campaign02.jpg" alt="Max Mara Campaign" loading="lazy">
-      <div class="item-caption"><span class="item-title">Max Mara — Photo &amp; Video Campaign</span></div>
+      <div class="item-caption"><span class="item-title">Max Mara</span></div>
     </div>
 
     <div class="gallery-item video-card" data-category="movement" data-title="Max Mara — Photo &amp; Video Campaign" data-video="assets/movement/maxmara/WeekendMM_4thcut_01_169.mov">
@@ -690,7 +663,7 @@
         <source src="assets/movement/maxmara/WeekendMM_4thcut_01_169.mov" type="video/mp4">
       </video>
       <div class="play-icon"></div>
-      <div class="item-caption"><span class="item-title">Max Mara — Photo &amp; Video Campaign</span></div>
+      <div class="item-caption"><span class="item-title">Max Mara</span></div>
     </div>
 
     <div class="gallery-item video-card" data-category="movement" data-title="Max Mara — Photo &amp; Video Campaign" data-video="assets/movement/maxmara/WeekendMM_4thcut_02_169.mp4">
@@ -698,7 +671,7 @@
         <source src="assets/movement/maxmara/WeekendMM_4thcut_02_169.mp4" type="video/mp4">
       </video>
       <div class="play-icon"></div>
-      <div class="item-caption"><span class="item-title">Max Mara — Photo &amp; Video Campaign</span></div>
+      <div class="item-caption"><span class="item-title">Max Mara</span></div>
     </div>
 
     <div class="gallery-item video-card" data-category="movement" data-title="Max Mara — Photo &amp; Video Campaign" data-video="assets/movement/maxmara/WeekendMM_4thcut_03_169.mp4">
@@ -706,47 +679,47 @@
         <source src="assets/movement/maxmara/WeekendMM_4thcut_03_169.mp4" type="video/mp4">
       </video>
       <div class="play-icon"></div>
-      <div class="item-caption"><span class="item-title">Max Mara — Photo &amp; Video Campaign</span></div>
+      <div class="item-caption"><span class="item-title">Max Mara</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Mathilda Enigma — directed by Jeremy Soma">
       <img src="assets/movement/mathilda-enigma/PAGE_2_RESIZE.jpg" alt="Mathilda Enigma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Mathilda Enigma — directed by Jeremy Soma</span></div>
+      <div class="item-caption"><span class="item-title">Mathilda Enigma — Jeremy Soma</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Mathilda Enigma — directed by Jeremy Soma">
       <img src="assets/movement/mathilda-enigma/PAGE_3_RESIZE.jpg" alt="Mathilda Enigma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Mathilda Enigma — directed by Jeremy Soma</span></div>
+      <div class="item-caption"><span class="item-title">Mathilda Enigma — Jeremy Soma</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Mathilda Enigma — directed by Jeremy Soma">
       <img src="assets/movement/mathilda-enigma/PAGE_4_RESIZE.jpg" alt="Mathilda Enigma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Mathilda Enigma — directed by Jeremy Soma</span></div>
+      <div class="item-caption"><span class="item-title">Mathilda Enigma — Jeremy Soma</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Mathilda Enigma — directed by Jeremy Soma">
       <img src="assets/movement/mathilda-enigma/PAGE_6_RESIZE.jpg" alt="Mathilda Enigma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Mathilda Enigma — directed by Jeremy Soma</span></div>
+      <div class="item-caption"><span class="item-title">Mathilda Enigma — Jeremy Soma</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Mathilda Enigma — directed by Jeremy Soma">
       <img src="assets/movement/mathilda-enigma/PAGE_7_RESIZE.jpg" alt="Mathilda Enigma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Mathilda Enigma — directed by Jeremy Soma</span></div>
+      <div class="item-caption"><span class="item-title">Mathilda Enigma — Jeremy Soma</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Mathilda Enigma — directed by Jeremy Soma">
       <img src="assets/movement/mathilda-enigma/PAGE_8_RESIZE.jpg" alt="Mathilda Enigma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Mathilda Enigma — directed by Jeremy Soma</span></div>
+      <div class="item-caption"><span class="item-title">Mathilda Enigma — Jeremy Soma</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Mathilda Enigma — directed by Jeremy Soma">
       <img src="assets/movement/mathilda-enigma/PAGE_12_RESIZE.jpg" alt="Mathilda Enigma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Mathilda Enigma — directed by Jeremy Soma</span></div>
+      <div class="item-caption"><span class="item-title">Mathilda Enigma — Jeremy Soma</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Mathilda Enigma — directed by Jeremy Soma">
       <img src="assets/movement/mathilda-enigma/PAGE_14_RESIZE.jpg" alt="Mathilda Enigma" loading="lazy">
-      <div class="item-caption"><span class="item-title">Mathilda Enigma — directed by Jeremy Soma</span></div>
+      <div class="item-caption"><span class="item-title">Mathilda Enigma — Jeremy Soma</span></div>
     </div>
 
     <div class="gallery-item video-card" data-category="movement" data-title="Mathilda Enigma — directed by Jeremy Soma" data-video="assets/movement/mathilda-enigma/Short.mov">
@@ -754,167 +727,167 @@
         <source src="assets/movement/mathilda-enigma/Short.mov" type="video/mp4">
       </video>
       <div class="play-icon"></div>
-      <div class="item-caption"><span class="item-title">Mathilda Enigma — directed by Jeremy Soma</span></div>
+      <div class="item-caption"><span class="item-title">Mathilda Enigma — Jeremy Soma</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Numéro Magazine — photographed by Anthony Arquier">
       <img src="assets/movement/numero-magazine/NUMERO_521.jpeg" alt="Numero Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">Numéro Magazine — photographed by Anthony Arquier</span></div>
+      <div class="item-caption"><span class="item-title">Numéro — Anthony Arquier</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Numéro Magazine — photographed by Anthony Arquier">
       <img src="assets/movement/numero-magazine/NUMERO_829.jpeg" alt="Numero Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">Numéro Magazine — photographed by Anthony Arquier</span></div>
+      <div class="item-caption"><span class="item-title">Numéro — Anthony Arquier</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Numéro Magazine — photographed by Anthony Arquier">
       <img src="assets/movement/numero-magazine/NUMERO_934.jpeg" alt="Numero Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">Numéro Magazine — photographed by Anthony Arquier</span></div>
+      <div class="item-caption"><span class="item-title">Numéro — Anthony Arquier</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="OFTS Foundation — styled by Patricia Villirilo">
       <img src="assets/movement/ofts-foundation/DSC05142.jpg" alt="OFTS Foundation" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="OFTS Foundation — styled by Patricia Villirilo">
       <img src="assets/movement/ofts-foundation/DSC05291.jpg" alt="OFTS Foundation" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="OFTS Foundation — styled by Patricia Villirilo">
       <img src="assets/movement/ofts-foundation/DSC05381.JPG" alt="OFTS Foundation" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="OFTS Foundation — styled by Patricia Villirilo">
       <img src="assets/movement/ofts-foundation/SAM_4378.JPG" alt="OFTS Foundation" loading="lazy">
-      <div class="item-caption"><span class="item-title">OFTS Foundation — styled by Patricia Villirilo</span></div>
+      <div class="item-caption"><span class="item-title">OFTS Foundation</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="The Face Magazine — photographed by Suzie and Leo, styled by Natacha Voranger">
       <img src="assets/movement/the-face/THEFACEISSUE22SUZYLEO9.jpg" alt="The Face Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">The Face Magazine — photographed by Suzie &amp; Leo, styled by Natacha Voranger</span></div>
+      <div class="item-caption"><span class="item-title">The Face — Suzie &amp; Leo</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="The Face Magazine — photographed by Suzie and Leo, styled by Natacha Voranger">
       <img src="assets/movement/the-face/THEFACEISSUE22SUZYLEO11.jpg" alt="The Face Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">The Face Magazine — photographed by Suzie &amp; Leo, styled by Natacha Voranger</span></div>
+      <div class="item-caption"><span class="item-title">The Face — Suzie &amp; Leo</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="The Face Magazine — photographed by Suzie and Leo, styled by Natacha Voranger">
       <img src="assets/movement/the-face/THEFACEISSUE22SUZYLEO12.jpg" alt="The Face Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">The Face Magazine — photographed by Suzie &amp; Leo, styled by Natacha Voranger</span></div>
+      <div class="item-caption"><span class="item-title">The Face — Suzie &amp; Leo</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Thom Browne × ASICS with Janina Sarantsina">
       <img src="assets/movement/thom-browne/IMG_3181.jpg" alt="Thom Browne x ASICS" loading="lazy">
-      <div class="item-caption"><span class="item-title">Thom Browne × ASICS with Janina Sarantsina</span></div>
+      <div class="item-caption"><span class="item-title">Thom Browne × ASICS</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Portugal — photographed by Charlotte Krieger, styled by Joana Dacheville">
       <img src="assets/movement/vogue-portugal/309B39E1-ABDD-4A3A-8DB2-438863485B42.jpg" alt="Vogue Portugal" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Portugal — photographed by Charlotte Krieger, styled by Joana Dacheville</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Portugal — Charlotte Krieger</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Portugal — photographed by Charlotte Krieger, styled by Joana Dacheville">
       <img src="assets/movement/vogue-portugal/6371F724-7959-4773-B831-C515D5E42E11.jpg" alt="Vogue Portugal" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Portugal — photographed by Charlotte Krieger, styled by Joana Dacheville</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Portugal — Charlotte Krieger</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Portugal — photographed by Charlotte Krieger, styled by Joana Dacheville">
       <img src="assets/movement/vogue-portugal/6F884EC5-27E6-46B3-8973-F048F06D5B18.jpg" alt="Vogue Portugal" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Portugal — photographed by Charlotte Krieger, styled by Joana Dacheville</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Portugal — Charlotte Krieger</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Portugal — photographed by Charlotte Krieger, styled by Joana Dacheville">
       <img src="assets/movement/vogue-portugal/DEB19A3F-F631-4CAC-AE50-5A8DFEB83D96.jpg" alt="Vogue Portugal" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Portugal — photographed by Charlotte Krieger, styled by Joana Dacheville</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Portugal — Charlotte Krieger</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/1D0AE564-3860-4430-9237-81492C6DC7C3.jpg" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/2C9E22F4-879B-472F-A959-F5B95BE2A489.JPG" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/4B3E69C8-57B5-43F8-A85B-32193D783E0C.JPG" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/592205A3-0CF7-4B59-A260-A6B1C41536F8.jpg" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/7DE940BF-48C5-4C9E-992E-72F3D5177697.jpg" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/8ACE2225-CAFE-4F4C-883D-A5427E5592F0.jpg" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/AA05E04A-94B7-4CD8-BC10-B12B8D7F5011.jpg" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/BA33CBB6-382A-4619-B322-6AEF4ACF0AF7.jpg" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/CBD97D7B-0E3C-4132-A14A-45519A4D28A1.JPG" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/CDA315E6-3575-47CB-B037-41B05FA27682.JPG" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/D30483C2-4DF6-4B8E-8BC0-9E1C5529B8D7.JPG" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo">
       <img src="assets/movement/vogue-scandinavia/EC3560F4-8B6B-49FF-B893-CADAFF2ADA99.jpg" alt="Vogue Scandinavia" loading="lazy">
-      <div class="item-caption"><span class="item-title">Vogue Scandinavia — photographed by David Gomez Maestre, styled by Alba Melendo</span></div>
+      <div class="item-caption"><span class="item-title">Vogue Scandinavia — David Gomez Maestre</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="W Magazine — shot by Izabelle Wenzel">
       <img src="assets/movement/w-mag/WM202105BELLE2.jpg" alt="W Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">W Magazine — shot by Izabelle Wenzel</span></div>
+      <div class="item-caption"><span class="item-title">W Magazine — Izabelle Wenzel</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="W Magazine — shot by Izabelle Wenzel">
       <img src="assets/movement/w-mag/WM202105BELLE3.jpg" alt="W Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">W Magazine — shot by Izabelle Wenzel</span></div>
+      <div class="item-caption"><span class="item-title">W Magazine — Izabelle Wenzel</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="W Magazine — shot by Izabelle Wenzel">
       <img src="assets/movement/w-mag/WM202105BELLE6.jpg" alt="W Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">W Magazine — shot by Izabelle Wenzel</span></div>
+      <div class="item-caption"><span class="item-title">W Magazine — Izabelle Wenzel</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="W Magazine — shot by Izabelle Wenzel">
       <img src="assets/movement/w-mag/WM202105BELLE15.jpg" alt="W Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">W Magazine — shot by Izabelle Wenzel</span></div>
+      <div class="item-caption"><span class="item-title">W Magazine — Izabelle Wenzel</span></div>
     </div>
 
     <div class="gallery-item" data-category="movement" data-title="W Magazine — shot by Izabelle Wenzel">
       <img src="assets/movement/w-mag/WM202105BELLE18.jpg" alt="W Magazine" loading="lazy">
-      <div class="item-caption"><span class="item-title">W Magazine — shot by Izabelle Wenzel</span></div>
+      <div class="item-caption"><span class="item-title">W Magazine — Izabelle Wenzel</span></div>
     </div>
 
   </section>
@@ -968,21 +941,15 @@
       </li>
     </ul>
     <div class="choreo-videos">
-      <div>
-        <video class="choreo-video" controls playsinline>
-          <source src="assets/choreography/maxmara-ss24/WeekendMM_4thcut_01_169.mov" type="video/mp4">
-        </video>
-      </div>
-      <div>
-        <video class="choreo-video" controls playsinline>
-          <source src="assets/choreography/maxmara-ss24/WeekendMM_4thcut_02_169.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div>
-        <video class="choreo-video" controls playsinline>
-          <source src="assets/choreography/maxmara-ss24/WeekendMM_4thcut_03_169.mp4" type="video/mp4">
-        </video>
-      </div>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/choreography/maxmara-ss24/WeekendMM_4thcut_01_169.mov" type="video/mp4">
+      </video>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/choreography/maxmara-ss24/WeekendMM_4thcut_02_169.mp4" type="video/mp4">
+      </video>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/choreography/maxmara-ss24/WeekendMM_4thcut_03_169.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 
@@ -999,7 +966,7 @@
 
 <footer>
   <span>Grace Lyell</span>
-  <div style="display:flex; gap:24px;">
+  <div style="display:flex; gap:20px;">
     <a href="https://www.instagram.com/gracelyell/" target="_blank" rel="noopener">Instagram</a>
     <a href="mailto:contact@gracelyell.com">contact@gracelyell.com</a>
   </div>
@@ -1032,7 +999,6 @@
     return allItems.filter(el => !el.classList.contains('hidden'));
   }
 
-  // ── Show / hide sections ──────────────────────────────────────────────────
   function showGallery() {
     gallery.style.display = '';
     directorSec.classList.remove('visible');
@@ -1052,7 +1018,6 @@
     btn.classList.add('active');
   }
 
-  // ── Filter buttons ────────────────────────────────────────────────────────
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       showGallery();
@@ -1064,7 +1029,6 @@
     });
   });
 
-  // ── Home link ─────────────────────────────────────────────────────────────
   document.getElementById('home-link').addEventListener('click', e => {
     e.preventDefault();
     showGallery();
@@ -1073,21 +1037,18 @@
     allItems.forEach(item => item.classList.remove('hidden'));
   });
 
-  // ── Director ─────────────────────────────────────────────────────────────
   document.getElementById('director-btn').addEventListener('click', () => {
     hideAll();
     directorSec.classList.add('visible');
     setActive(document.getElementById('director-btn'));
   });
 
-  // ── Choreography ──────────────────────────────────────────────────────────
   document.getElementById('choreography-btn').addEventListener('click', () => {
     hideAll();
     choreoSec.classList.add('visible');
     setActive(document.getElementById('choreography-btn'));
   });
 
-  // ── About ─────────────────────────────────────────────────────────────────
   document.getElementById('about-btn').addEventListener('click', () => {
     hideAll();
     aboutSec.classList.add('visible');
@@ -1138,8 +1099,7 @@
 
   allItems.forEach(item => {
     item.addEventListener('click', () => {
-      const vis = visibleItems();
-      openAt(vis.indexOf(item));
+      openAt(visibleItems().indexOf(item));
     });
   });
 
