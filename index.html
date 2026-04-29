@@ -14,8 +14,8 @@
       --bg: #ffffff;
       --text: #0a0a0a;
       --muted: #aaa;
-      --gap: 6px;
-      --img-h: 260px;
+      --gap: 10px;
+      --img-h: 200px;
     }
 
     body {
@@ -79,6 +79,7 @@
       flex-wrap: wrap;
       gap: var(--gap);
       align-content: flex-start;
+      justify-content: center;
     }
 
     .gallery-item {
@@ -90,9 +91,11 @@
     }
 
     .gallery-item img {
-      height: var(--img-h);
+      max-height: var(--img-h);
+      height: auto;
       width: auto;
       display: block;
+      border-radius: 2px;
       transition: opacity 0.3s;
     }
 
@@ -107,6 +110,7 @@
       height: var(--img-h);
       width: auto;
       display: block;
+      border-radius: 2px;
       transition: opacity 0.3s;
     }
 
@@ -160,74 +164,65 @@
 
     .gallery-item.hidden { display: none; }
 
-    /* ── Text sections (Director / Choreography / About) ── */
+    /* ── Text sections ── */
+    #photography-section,
     #director-section,
     #choreography-section,
+    #movement-section,
     #about {
       display: none;
-      padding: 60px 40px 100px;
-      max-width: 600px;
+      padding: 40px 40px 80px;
     }
 
+    #photography-section.visible,
     #director-section.visible,
     #choreography-section.visible,
+    #movement-section.visible,
     #about.visible { display: block; }
 
-    .section-label {
-      font-size: 9px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
+    .cv-line {
+      font-size: 11px;
       color: var(--muted);
-      margin-bottom: 32px;
+      letter-spacing: 0.05em;
+      line-height: 1.9;
+      margin-bottom: 36px;
+      text-align: center;
     }
 
-    .project-list {
-      list-style: none;
-    }
-
-    .project-list li {
-      padding: 16px 0;
-      border-bottom: 1px solid #ebebeb;
+    /* Section image gallery */
+    .section-gallery {
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: var(--gap);
+      justify-content: center;
     }
 
-    .project-list li:first-child { border-top: 1px solid #ebebeb; }
-
-    .project-name {
-      font-size: 13px;
-      font-weight: 300;
-      letter-spacing: 0.02em;
+    .section-gallery .gallery-item {
+      cursor: default;
     }
 
-    .project-link {
-      font-size: 9px;
+    .section-ext-link {
+      text-align: center;
+    }
+
+    .section-ext-link a {
+      font-size: 10px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
-      white-space: nowrap;
       transition: color 0.2s;
     }
 
-    .project-link:hover { color: var(--text); }
-
-    .project-soon {
-      font-size: 9px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #ccc;
-      white-space: nowrap;
-    }
+    .section-ext-link a:hover { color: var(--text); }
 
     /* Choreography videos */
     .choreo-videos {
-      margin-top: 44px;
       display: flex;
       flex-direction: column;
       gap: 14px;
+      max-width: 760px;
+      margin: 0 auto;
     }
 
     .choreo-video {
@@ -362,7 +357,7 @@
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
-      :root { --img-h: 120px; }
+      :root { --img-h: 110px; }
 
       header {
         padding: 14px 20px;
@@ -374,8 +369,8 @@
         gap: 4px;
       }
 
-      #director-section, #choreography-section, #about {
-        padding: 40px 20px 60px;
+      #photography-section, #director-section, #choreography-section, #movement-section, #about {
+        padding: 28px 20px 60px;
       }
 
       footer { padding: 16px 20px; }
@@ -393,8 +388,8 @@
   <h1><a class="site-name" href="#" id="home-link">Grace Lyell</a></h1>
   <nav>
     <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="photography">Photography</button>
-    <button class="filter-btn" data-filter="movement">Movement Direction</button>
+    <button id="photography-btn">Photography</button>
+    <button id="movement-btn">Movement Direction</button>
     <button id="director-btn">Director</button>
     <button id="choreography-btn">Choreography</button>
     <button id="about-btn">About</button>
@@ -461,6 +456,96 @@
     <div class="gallery-item" data-category="photography" data-title="OFTS Foundation Art Book — styled by Patricia Villirilo">
       <img src="assets/photography/ofts-art-book/SAM_4398.JPG" alt="OFTS Foundation Art Book" loading="lazy">
       <div class="item-caption"><span class="item-title">OFTS Foundation Art Book</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/DSC05965.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/DSC06302.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/DSC06314.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/DSC06318.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/DSC06354.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/DSC06606.JPG" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/bonus3-2.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/fam-1.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/fam-7.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/fam4.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Editorial — My Family, 2025">
+      <img src="assets/photography/my-family/fam6.jpg" alt="My Family 2025" loading="lazy">
+      <div class="item-caption"><span class="item-title">My Family, 2025</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Gina Corrieri, 2026">
+      <img src="assets/photography/gina-corrieri/DSC06967.jpg" alt="Gina Corrieri 2026" loading="lazy">
+      <div class="item-caption"><span class="item-title">Gina Corrieri, 2026</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Gina Corrieri, 2026">
+      <img src="assets/photography/gina-corrieri/DSC07034.jpg" alt="Gina Corrieri 2026" loading="lazy">
+      <div class="item-caption"><span class="item-title">Gina Corrieri, 2026</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Gina Corrieri, 2026">
+      <img src="assets/photography/gina-corrieri/georgia-1.jpg" alt="Gina Corrieri 2026" loading="lazy">
+      <div class="item-caption"><span class="item-title">Gina Corrieri, 2026</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Gina Corrieri, 2026">
+      <img src="assets/photography/gina-corrieri/georgia-2.jpg" alt="Gina Corrieri 2026" loading="lazy">
+      <div class="item-caption"><span class="item-title">Gina Corrieri, 2026</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Reminiscence Parfums">
+      <img src="assets/photography/parfums/Parfum+corps.jpg" alt="Reminiscence Parfums" loading="lazy">
+      <div class="item-caption"><span class="item-title">Reminiscence Parfums</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Reminiscence Parfums">
+      <img src="assets/photography/parfums/SAM_4544.JPG" alt="Reminiscence Parfums" loading="lazy">
+      <div class="item-caption"><span class="item-title">Reminiscence Parfums</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="photography" data-title="Reminiscence Parfums">
+      <img src="assets/photography/parfums/SAM_4652.jpg" alt="Reminiscence Parfums" loading="lazy">
+      <div class="item-caption"><span class="item-title">Reminiscence Parfums</span></div>
     </div>
 
     <!-- MOVEMENT DIRECTION -->
@@ -892,55 +977,43 @@
 
   </section>
 
+  <!-- ── Photography ── -->
+  <section id="photography-section">
+    <p class="cv-line">Lena Mahfouf, My Family, Gina Corrieri, Reminiscence Parfums, OFTS Foundation</p>
+    <div class="section-gallery" id="photography-gallery"></div>
+  </section>
+
+  <!-- ── Movement Direction ── -->
+  <section id="movement-section">
+    <p class="cv-line">Amina Muaddi, Celia Cotelle, Charlie Le Mindu, Coperni × Puma, Diesel, Julie Kegels, Mathilda Enigma, Max Mara, Numéro Magazine, OFTS Foundation, The Face, Thom Browne × ASICS, Vogue Portugal, Vogue Scandinavia, W Magazine</p>
+    <div class="section-gallery" id="movement-gallery"></div>
+  </section>
+
   <!-- ── Director ── -->
   <section id="director-section">
-    <p class="section-label">Director</p>
-    <ul class="project-list">
-      <li>
-        <span class="project-name">"I Used to be Scared of Love"</span>
-        <a class="project-link" href="https://www.nowness.com/series/just-dance/i-used-to-be-scared-of-love" target="_blank" rel="noopener">Watch ↗</a>
-      </li>
-      <li>
-        <span class="project-name">"Georgia"</span>
-        <span class="project-soon">Coming soon</span>
-      </li>
-      <li>
-        <span class="project-name">"Pour 7'15"</span>
-        <span class="project-soon">Coming soon</span>
-      </li>
-      <li>
-        <span class="project-name">"Appenzeller"</span>
-        <span class="project-soon">Coming soon</span>
-      </li>
-    </ul>
+    <p class="cv-line">"I Used to be Scared of Love"</p>
+    <p class="section-ext-link"><a href="https://www.nowness.com/series/just-dance/i-used-to-be-scared-of-love" target="_blank" rel="noopener">Watch on Nowness ↗</a></p>
   </section>
 
   <!-- ── Choreography ── -->
   <section id="choreography-section">
-    <p class="section-label">Choreography</p>
-    <ul class="project-list">
-      <li>
-        <span class="project-name">"I Used to be Scared of Love"</span>
-        <a class="project-link" href="https://www.nowness.com/series/just-dance/i-used-to-be-scared-of-love" target="_blank" rel="noopener">Watch ↗</a>
-      </li>
-      <li>
-        <span class="project-name">Parallelism</span>
-        <a class="project-link" href="https://www.visore-x.com/pages/parallelism" target="_blank" rel="noopener">Watch ↗</a>
-      </li>
-      <li>
-        <span class="project-name">"Bleu" — Anna Majidson</span>
-        <a class="project-link" href="https://www.youtube.com/watch?v=RttbaFBCxXo" target="_blank" rel="noopener">Watch ↗</a>
-      </li>
-      <li>
-        <span class="project-name">"You Know It" — David Spinelli</span>
-        <a class="project-link" href="https://www.youtube.com/watch?v=XRRWhAKOYC4" target="_blank" rel="noopener">Watch ↗</a>
-      </li>
-      <li>
-        <span class="project-name">Max Mara — Weekend Campaign SS24</span>
-        <span class="project-soon"></span>
-      </li>
-    </ul>
+    <p class="cv-line">"I Used to be Scared of Love", Parallelism, "Bleu" — Anna Majidson, "You Know It" — David Spinelli, Max Mara Weekend Campaign SS24</p>
     <div class="choreo-videos">
+      <p class="section-ext-link"><a href="https://www.nowness.com/series/just-dance/i-used-to-be-scared-of-love" target="_blank" rel="noopener">Watch on Nowness ↗</a></p>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/choreography/parallelism/parallelism-1.mov" type="video/mp4">
+      </video>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/choreography/parallelism/parallelism-2.mov" type="video/mp4">
+      </video>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/choreography/parallelism/parallelism-3.mov" type="video/mp4">
+      </video>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/choreography/parallelism/parallelism-4.mov" type="video/mp4">
+      </video>
+      <p class="section-ext-link"><a href="https://www.youtube.com/watch?v=RttbaFBCxXo" target="_blank" rel="noopener">"Bleu" — Anna Majidson, Watch on YouTube ↗</a></p>
+      <p class="section-ext-link"><a href="https://www.youtube.com/watch?v=XRRWhAKOYC4" target="_blank" rel="noopener">"You Know It" — David Spinelli, Watch on YouTube ↗</a></p>
       <video class="choreo-video" controls playsinline>
         <source src="assets/choreography/maxmara-ss24/WeekendMM_4thcut_01_169.mov" type="video/mp4">
       </video>
@@ -983,15 +1056,29 @@
 </div>
 
 <script>
-  const allItems    = Array.from(document.querySelectorAll('.gallery-item'));
   const lightbox    = document.getElementById('lightbox');
   const lbImg       = document.getElementById('lb-img');
   const lbVideo     = document.getElementById('lb-video');
   const lbCaption   = document.getElementById('lb-caption');
   const gallery     = document.getElementById('gallery');
+  const photoSec    = document.getElementById('photography-section');
   const directorSec = document.getElementById('director-section');
   const choreoSec   = document.getElementById('choreography-section');
+  const movementSec = document.getElementById('movement-section');
   const aboutSec    = document.getElementById('about');
+
+  // Shuffle gallery items so categories are mixed on landing
+  (function() {
+    const items = Array.from(gallery.querySelectorAll('.gallery-item'));
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    items.forEach(item => gallery.appendChild(item));
+  })();
+
+  // Collect allItems after shuffle so lightbox navigation follows visual order
+  const allItems = Array.from(gallery.querySelectorAll('.gallery-item'));
 
   let currentIdx = 0;
 
@@ -999,18 +1086,27 @@
     return allItems.filter(el => !el.classList.contains('hidden'));
   }
 
+  const allSections = [photoSec, directorSec, choreoSec, movementSec, aboutSec];
+
   function showGallery() {
     gallery.style.display = '';
-    directorSec.classList.remove('visible');
-    choreoSec.classList.remove('visible');
-    aboutSec.classList.remove('visible');
+    allSections.forEach(s => s.classList.remove('visible'));
   }
 
   function hideAll() {
     gallery.style.display = 'none';
-    directorSec.classList.remove('visible');
-    choreoSec.classList.remove('visible');
-    aboutSec.classList.remove('visible');
+    allSections.forEach(s => s.classList.remove('visible'));
+  }
+
+  function populateSectionGallery(galleryEl, category) {
+    if (galleryEl.children.length) return;
+    allItems
+      .filter(item => item.dataset.category === category)
+      .forEach(item => {
+        const clone = item.cloneNode(true);
+        galleryEl.appendChild(clone);
+        clone.querySelectorAll('video').forEach(v => { v.load(); v.play().catch(() => {}); });
+      });
   }
 
   function setActive(btn) {
@@ -1035,6 +1131,21 @@
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     document.querySelector('[data-filter="all"]').classList.add('active');
     allItems.forEach(item => item.classList.remove('hidden'));
+  });
+
+
+  document.getElementById('photography-btn').addEventListener('click', () => {
+    hideAll();
+    photoSec.classList.add('visible');
+    setActive(document.getElementById('photography-btn'));
+    populateSectionGallery(document.getElementById('photography-gallery'), 'photography');
+  });
+
+  document.getElementById('movement-btn').addEventListener('click', () => {
+    hideAll();
+    movementSec.classList.add('visible');
+    setActive(document.getElementById('movement-btn'));
+    populateSectionGallery(document.getElementById('movement-gallery'), 'movement');
   });
 
   document.getElementById('director-btn').addEventListener('click', () => {
