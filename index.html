@@ -169,6 +169,7 @@
     #director-section,
     #choreography-section,
     #movement-section,
+    #film-section,
     #about {
       display: none;
       padding: 40px 40px 80px;
@@ -178,6 +179,7 @@
     #director-section.visible,
     #choreography-section.visible,
     #movement-section.visible,
+    #film-section.visible,
     #about.visible { display: block; }
 
     .cv-line {
@@ -392,6 +394,7 @@
     <button id="movement-btn">Movement Direction</button>
     <button id="director-btn">Director</button>
     <button id="choreography-btn">Choreography</button>
+    <button id="film-btn">Film</button>
     <button id="about-btn">About</button>
   </nav>
 </header>
@@ -1026,6 +1029,25 @@
     </div>
   </section>
 
+  <!-- ── Film ── -->
+  <section id="film-section">
+    <p class="cv-line">AMI Paris — Valentine's Day Digital Campaign</p>
+    <div class="choreo-videos">
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/film/ami-paris/copy_5F7A974C-35A6-4025-BF67-627330BBABAE.mov" type="video/mp4">
+      </video>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/film/ami-paris/copy_9AE415CD-9C6D-4732-A993-E5C05C4C2229.mov" type="video/mp4">
+      </video>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/film/ami-paris/copy_A0B62087-B76C-4618-BE53-C352EE17AE7C.mov" type="video/mp4">
+      </video>
+      <video class="choreo-video" controls playsinline>
+        <source src="assets/film/ami-paris/copy_DFECE945-6550-4A0B-805A-A43874775033.mov" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
   <!-- ── About ── -->
   <section id="about">
     <div class="contact-block">
@@ -1066,6 +1088,7 @@
   const choreoSec   = document.getElementById('choreography-section');
   const movementSec = document.getElementById('movement-section');
   const aboutSec    = document.getElementById('about');
+  const filmSec     = document.getElementById('film-section');
 
   // Shuffle gallery items so categories are mixed on landing
   (function() {
@@ -1086,7 +1109,7 @@
     return allItems.filter(el => !el.classList.contains('hidden'));
   }
 
-  const allSections = [photoSec, directorSec, choreoSec, movementSec, aboutSec];
+  const allSections = [photoSec, directorSec, choreoSec, movementSec, filmSec, aboutSec];
 
   function showGallery() {
     gallery.style.display = '';
@@ -1158,6 +1181,12 @@
     hideAll();
     choreoSec.classList.add('visible');
     setActive(document.getElementById('choreography-btn'));
+  });
+
+  document.getElementById('film-btn').addEventListener('click', () => {
+    hideAll();
+    filmSec.classList.add('visible');
+    setActive(document.getElementById('film-btn'));
   });
 
   document.getElementById('about-btn').addEventListener('click', () => {
