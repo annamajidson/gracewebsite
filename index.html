@@ -166,7 +166,6 @@
 
     /* ── Text sections ── */
     #photography-section,
-    #director-section,
     #choreography-section,
     #movement-section,
     #film-section,
@@ -176,7 +175,6 @@
     }
 
     #photography-section.visible,
-    #director-section.visible,
     #choreography-section.visible,
     #movement-section.visible,
     #film-section.visible,
@@ -371,7 +369,7 @@
         gap: 4px;
       }
 
-      #photography-section, #director-section, #choreography-section, #movement-section, #about {
+      #photography-section, #choreography-section, #movement-section, #about {
         padding: 28px 20px 60px;
       }
 
@@ -392,7 +390,6 @@
     <button class="filter-btn active" data-filter="all">All</button>
     <button id="photography-btn">Photography</button>
     <button id="movement-btn">Movement Direction</button>
-    <button id="director-btn">Director</button>
     <button id="choreography-btn">Choreography</button>
     <button id="film-btn">Film</button>
     <button id="about-btn">About</button>
@@ -1084,7 +1081,6 @@
   const lbCaption   = document.getElementById('lb-caption');
   const gallery     = document.getElementById('gallery');
   const photoSec    = document.getElementById('photography-section');
-  const directorSec = document.getElementById('director-section');
   const choreoSec   = document.getElementById('choreography-section');
   const movementSec = document.getElementById('movement-section');
   const aboutSec    = document.getElementById('about');
@@ -1109,7 +1105,7 @@
     return allItems.filter(el => !el.classList.contains('hidden'));
   }
 
-  const allSections = [photoSec, directorSec, choreoSec, movementSec, filmSec, aboutSec];
+  const allSections = [photoSec, choreoSec, movementSec, filmSec, aboutSec];
 
   function showGallery() {
     gallery.style.display = '';
@@ -1169,12 +1165,6 @@
     movementSec.classList.add('visible');
     setActive(document.getElementById('movement-btn'));
     populateSectionGallery(document.getElementById('movement-gallery'), 'movement');
-  });
-
-  document.getElementById('director-btn').addEventListener('click', () => {
-    hideAll();
-    directorSec.classList.add('visible');
-    setActive(document.getElementById('director-btn'));
   });
 
   document.getElementById('choreography-btn').addEventListener('click', () => {
